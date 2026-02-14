@@ -7,6 +7,7 @@ my=100
 score = 0
 meteors = []
 c = 0
+count = 0
 t.bgcolor("light blue")
 t.title("meteor rain")
 t.setup(450, 450)
@@ -56,7 +57,7 @@ def meteor():
         t.penup()
 
 def logic():
-    global mx, my, score, px, py
+    global mx, my, score, px, py, count
     for x in meteors:
         x["my"] -= 20
         if x["mx"] == px and x["my"] == py:
@@ -65,7 +66,11 @@ def logic():
             x["my"] = 200
             
         if (x["my"] <= -200):
-            score += 1
+            count += 1
+            if count == 10:
+                
+                score += 1
+                count = 0
             x["mx"] = (random.randint(-10,9))*20
             x["my"] = 200
     t.goto(-150, -180)
